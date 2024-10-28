@@ -35,18 +35,19 @@ mod tests {
     }
 }
 
-fn save_to_md(result: &[f64], exec_time: &std::time::Duration) -> io::Result<()> {
+fn save_to_md(input_values: &[f64], result: &[f64], exec_time: &std::time::Duration) -> io::Result<()> {
     let mut file = File::create("rust_performance_report.md")?;
     
     // Prepare the markdown content
     writeln!(file, "# Performance Report")?;
-    writeln!(file, "## Output")?;
-    writeln!(file, "| Value |")?;
-    writeln!(file, "|-------|")?;
+    writeln!(file, "## Output Values")?;
+    writeln!(file, "These are the output values when the input values are multiplied by **2**:\n")?;
+    writeln!(file, "| Input Value | Output Value |")?;
+    writeln!(file, "|-------------|--------------|")?;
     
-    // Write the first few results to the markdown table
-    for &value in &result[0..result.len().min(5)] { // Change this slice if you want more or fewer results
-        writeln!(file, "| {:.2} |", value)?;
+    // Write input and output values to the markdown table
+    for (input, output) in input_values.iter().zip(result.iter()) {
+        writeln!(file, "| {:.2} | {:.2} |", input, output)?;
     }
     
     writeln!(file, "## Execution Time")?;
@@ -56,12 +57,12 @@ fn save_to_md(result: &[f64], exec_time: &std::time::Duration) -> io::Result<()>
 }
 
 fn main() {
-    let values = vec![10.0, 20.0, 30.0, 40.0, 50.0]; // Replace with a large array for testing
+    let input_values = vec![10.0, 20.0, 30.0, 40.0, 50.0];
 
     // Start the timer
     let start = Instant::now();
 
-    let result = multiply_values(&values, 2.0); // Multiply each by 2.0
+    let result = multiply_values(&input_values, 2.0); // Multiply each by 2.0
 
     // Stop the timer
     let duration = start.elapsed(); // Calculate elapsed time
@@ -70,8 +71,8 @@ fn main() {
     println!("Result: {:?}", result); // Verify result
     println!("Execution time: {:?}", duration); // Print execution time
 
-    // Save the results to a markdown file
-    if let Err(e) = save_to_md(&result, &duration) {
+    // Call save_to_md function to generate markdown report
+    if let Err(e) = save_to_md(&input_values, &result, &duration) {
         eprintln!("Error writing to markdown file: {}", e);
     }
 }
