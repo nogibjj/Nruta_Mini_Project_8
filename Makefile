@@ -22,6 +22,9 @@ rust_test:
 rust_run:
 	cargo run
 
+rust_build:
+	cargo build --release
+
 rust_release:
 	cargo build --release
 

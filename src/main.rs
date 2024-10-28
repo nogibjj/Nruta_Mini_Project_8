@@ -36,7 +36,7 @@ mod tests {
 }
 
 fn save_to_md(result: &[f64], exec_time: &std::time::Duration) -> io::Result<()> {
-    let mut file = File::create("performance_report.md")?;
+    let mut file = File::create("rust_performance_report.md")?;
     
     // Prepare the markdown content
     writeln!(file, "# Performance Report")?;
@@ -69,4 +69,9 @@ fn main() {
     // Print the results
     println!("Result: {:?}", result); // Verify result
     println!("Execution time: {:?}", duration); // Print execution time
+
+    // Save the results to a markdown file
+    if let Err(e) = save_to_md(&result, &duration) {
+        eprintln!("Error writing to markdown file: {}", e);
+    }
 }
