@@ -5,7 +5,7 @@ def multiply_values(values, factor):
     return [x * factor for x in values]
 
 
-def save_to_md(input_values, result, exec_time):
+def save_to_md(input, result, exec_time):
     # Write the markdown table to a file
     with open("python_performance_report.md", "w", encoding="utf-8") as file:
         file.write("# Performance Report\n")
@@ -17,7 +17,7 @@ def save_to_md(input_values, result, exec_time):
         file.write("|-------------|--------------|\n")
 
         # Write input and output values to the markdown table
-        for input_val, output_val in zip(input_values, result):
+        for input_val, output_val in zip(input, result):
             file.write(f"| {input_val:.2f} | {output_val:.2f} |\n")
 
         file.write("## Execution Time\n")
