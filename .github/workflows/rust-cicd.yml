@@ -32,10 +32,10 @@ jobs:
         run: make rust_format
 
       - name: Build Rust project
-        run: cargo build --release
+        run: make rust_build
 
       - name: Run Rust tests
         run: make rust_test
 
       - name: Run Rust application
-        run: cargo run --release
+        run: make rust_run

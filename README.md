@@ -1,1 +1,2 @@
-# Nruta_Mini_Project_8
+# IDS 706 Week 8 Mini Project - Rewrite a Python Script in Rust
+

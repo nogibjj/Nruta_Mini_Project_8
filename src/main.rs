@@ -1,3 +1,5 @@
+use std::fs::File;
+use std::io::{self, Write};
 use std::time::Instant; // Importing the time module
 
 fn multiply_values(values: &[f64], factor: f64) -> Vec<f64> {
@@ -31,6 +33,26 @@ mod tests {
         let expected: Vec<f64> = vec![];
         assert_eq!(multiply_values(&values, factor), expected);
     }
+}
+
+fn save_to_md(result: &[f64], exec_time: &std::time::Duration) -> io::Result<()> {
+    let mut file = File::create("performance_report.md")?;
+    
+    // Prepare the markdown content
+    writeln!(file, "# Performance Report")?;
+    writeln!(file, "## Output")?;
+    writeln!(file, "| Value |")?;
+    writeln!(file, "|-------|")?;
+    
+    // Write the first few results to the markdown table
+    for &value in &result[0..result.len().min(5)] { // Change this slice if you want more or fewer results
+        writeln!(file, "| {:.2} |", value)?;
+    }
+    
+    writeln!(file, "## Execution Time")?;
+    writeln!(file, "Execution time: **{:?}**", exec_time)?;
+    
+    Ok(())
 }
 
 fn main() {
