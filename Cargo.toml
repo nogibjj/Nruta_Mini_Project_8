@@ -5,3 +5,4 @@ edition = "2021"
 
 [dependencies]
 criterion = "0.3"          
+sysinfo = "0.24"
