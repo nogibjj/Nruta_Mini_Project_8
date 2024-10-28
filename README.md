@@ -1,3 +1,6 @@
+[![Python CI/CD](https://github.com/nogibjj/Nruta_Mini_Project_8/actions/workflows/python-cicd.yml/badge.svg)](https://github.com/nogibjj/Nruta_Mini_Project_8/actions/workflows/python-cicd.yml)
+[![Rust CI/CD](https://github.com/nogibjj/Nruta_Mini_Project_8/actions/workflows/rust-cicd.yml/badge.svg)](https://github.com/nogibjj/Nruta_Mini_Project_8/actions/workflows/rust-cicd.yml)
+
 # IDS 706 Week 8 Mini Project - Rewrite a Python Script in Rust
 
 ## 🏗️ Requirements
